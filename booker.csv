@@ -2,7 +2,7 @@ SL. NO.;YEAR;WINNER;NOVEL;LENGTH OF BOOK;LENGTH OF BOOK BIN;GENDER;BIRTH YEAR;AG
 1;1969;P. H. Newby;Something to Answer For;284;300;M;1918;51;55;Mystery;British;UK;Faber & Faber;St Paul's College of Education;17
 2;1970;Bernice Rubens;The Elected Member;224;300;F;1923;47;50;Domestic;British;UK;Eyre & Spottiswoode;University of Wales;5
 3;1971;V. S. Naipaul;In a Free State;192;200;M;1932;39;40;Historical;British;Trinidad;Deutsch;Oxford;8
-4;1972;John Berger;G.;336;400;M;1926;46;50;Experimental ;British;UK;Weidenfeld & Nicolson;ï¿½Central School of Art and Design;4
+4;1972;John Berger;G.;336;400;M;1926;46;50;Experimental ;British;UK;Weidenfeld & Nicolson; Central School of Art and Design;4
 5;1973;J. G. Farrell;The Siege of Krishnapur;400;400;M;1935;38;40;Historical;British;UK;Weidenfeld & Nicolson;Oxford;5
 6;1974;Nadine Gordimer;The Conservationist;336;400;F;1923;51;55;Political;South African;South Africa;Jonathan Cape;Did not Graduate;6
 7;1974;Stanley Middleton;Holiday;256;300;M;1919;55;55;Contemporary;British;UK;Hutchinson;University of Nottingham;14
@@ -57,3 +57,5 @@ SL. NO.;YEAR;WINNER;NOVEL;LENGTH OF BOOK;LENGTH OF BOOK BIN;GENDER;BIRTH YEAR;AG
 59;2021;Damon Galgut;The Promise;242;300;M;1963;58;60;Historical;South African;South Africa;Chatto & Windus;University of Cape Town;5
 60;2022;Shehan Karunatilaka;The Seven Moons of Maali Almeida;368;400;M;1975;47;50;Magic realism;Sri Lankan;Sri Lanka;Sort of Books;Massey University;3
 61;2023;Paul Lynch;Prophet Song;320;400;M;1977;46;50;Dystopian;British;Ireland;Oneworld Publications;Did not Attend;5
+;;;;;;;;;;;;;;;
+;;;;;;F=20;;;;;;;;;
