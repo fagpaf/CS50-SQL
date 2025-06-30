@@ -1,10 +1,1 @@
-SELECT
-    YEAR,
-    -- WINNER,
-    NOVEL
-FROM
-    booker
-WHERE
-    NOVEL
-    LIKE 'THE%';
-    
+SELECT * FROM longlist LIMIT 5;
