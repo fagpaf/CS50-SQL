@@ -1,1 +1,23 @@
-SELECT * FROM longlist LIMIT 5;
+-- SELECT NOME FROM PESQUISADOR
+-- WHERE ID = (
+--     SELECT ID_PESQ FROM PESQUISADOR
+--     WHERE ID_ART = (
+--         SELECT ID FROM ART
+--         WHERE 
+-- );
+
+SELECT NOME FROM PESQUISADOR
+WHERE CPF IN (
+    SELECT CPF FROM ESCREVE
+    WHERE MAT = '1010'
+);       
+        
+        
+        
+-- SELECT TITULO, NOTA
+-- FROM ARTIGO
+-- WHERE COD = (
+--     SELECT COD FROM EVENTO
+--     WHERE ANO = 2021
+-- );
+
