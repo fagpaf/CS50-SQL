@@ -6,7 +6,7 @@
 
 
 -- Melhor modo usando LIKE, como é uma string ele vai atrás de onde tem 2007
-SELECT "title", "air_date"
+SELECT "title"
 FROM "episodes"
 WHERE "season" = 6 
     AND "air_date" LIKE '2007%';
