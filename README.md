@@ -1,4 +1,4 @@
-# CS50 SQL
+# CS50 SQL 🛢️
 
 Repositório criado para acompanhar meus estudos no curso **CS50's Introduction to Databases with SQL**, da Harvard University.
 
