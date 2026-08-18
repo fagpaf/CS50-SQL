@@ -59,7 +59,6 @@
 -- Palavra chave "IN", aceita subconsultas que retornam 0, 1 ou N.
 -- Sendo de cardinalidade 1-para-N
 
-
 -- Para entender subconsultas aninhadas em SQL, a melhor forma é lê-las de dentro para fora
 
 -- Consulta a tabela "books" e filtra apenas as linhas cujo "id" pertence à lista obtida no passo 2, exibindo a coluna "title"
@@ -78,35 +77,3 @@
 
 -- Subconsultas n-para-n acima
 -- ====================================================
-
-
--- JOIN
-
--- SELECT * 
--- FROM sea_lions
--- JOIN migrations ON migrations.id = sea_lions.id;
-
--- Uso de aspas duplas: Usar somente quando o nome tiver espaços ou seja uma palavra reservada
-
--- LEFT JOIN
-SELECT * 
-FROM sea_lions
-LEFT JOIN migrations ON migrations.id = sea_lions.id;
-
-
--- RIGHT JOIN
-SELECT *
-FROM sea_lions
-RIGHT JOIN migrations ON migrations.id = sea_lions.id;
-
-
--- FULL JOIN
-SELECT * 
-FROM sea_lions
-FULL JOIN migrations ON migrations.id = sea_lions.id;
-
-
--- NATURAL JOIN 
-SELECT * 
-FROM sea_lions
-NATURAL JOIN migrations;
