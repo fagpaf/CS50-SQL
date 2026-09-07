@@ -8,12 +8,12 @@ Neste repositório estão os exercícios e anotações que estou desenvolvendo d
 
 ## Conteúdos a serem estudados
 
-* Consultas SQL
-* Filtragem e ordenação de dados
-* Funções de agregação
-* `GROUP BY` e `HAVING`
-* Subconsultas
-* `JOIN`
+~~* Consultas SQL~~
+~~* Filtragem e ordenação de dados~~
+~~* Funções de agregação~~
+~~* `GROUP BY` e `HAVING`~~
+~~* Subconsultas~~
+~~* `JOIN`~~
 * Chaves primárias e estrangeiras
 * Relacionamentos entre tabelas
 * Normalização
