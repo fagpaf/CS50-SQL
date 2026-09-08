@@ -9,9 +9,11 @@ CREATE TABLE "passengers" (
 -- ver esse nome da tabela
 CREATE TABLE "check_ins" (
     "id" INTEGER,
+    "passengers_id" INTEGER,
     "flights_id" INTEGER,
     "datetime" NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY ("id"),
+    FOREIGN KEY ("passengers_id") REFERENCES "passengers"("id"),
     FOREIGN KEY ("flights_id") REFERENCES "flights"("id")
 );
 
@@ -19,7 +21,7 @@ CREATE TABLE "check_ins" (
 CREATE TABLE "airlines" (
     "id" INTEGER,
     "name" TEXT NOT NULL UNIQUE,
-    "concourse" TEXT NOT NULL,
+    "concourse" TEXT NOT NULL CHECK("concourse" IN ('A', 'B', 'C', 'D', 'E', 'F', 'T')),
     PRIMARY KEY ("id")
 );
 
@@ -27,9 +29,11 @@ CREATE TABLE "airlines" (
 CREATE TABLE "flights" (
     "id" INTEGER,
     "airlines_id" INTEGER,
-    "number" INTEGER NOT NULL,
-    "departing_code" TEXT NOT NULL UNIQUE,
-    "heading _code" TEXT NOT NULL UNIQUE,
-    "departure_time" NUMERIC NOT NULL DEFAULT CURRENT_TIME,
-    "arrival_time" NUMERIC NOT NULL DEFAULT CURRENT_TIME
+    "flight_number" INTEGER NOT NULL,
+    "departing_airport_code" TEXT NOT NULL,
+    "heading_airport_code" TEXT NOT NULL,
+    "departure_time" NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "arrival_time" NUMERIC NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY ("id"),
+    FOREIGN KEY ("airlines_id") REFERENCES "airlines"("id")
 );
