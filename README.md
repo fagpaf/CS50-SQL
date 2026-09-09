@@ -14,9 +14,9 @@ Neste repositório estão os exercícios e anotações que estou desenvolvendo d
 * [x] `GROUP BY` e `HAVING`
 * [x] Subconsultas
 * [x] `JOIN`
-* [ ] Chaves primárias e estrangeiras
-* [ ] Relacionamentos entre tabelas
-* [ ] Normalização
+* [x] Chaves primárias e estrangeiras
+* [x] Relacionamentos entre tabelas
+* [x] Normalização
 * [ ] `INSERT`, `UPDATE` e `DELETE`
 * [ ] Views
 * [ ] Índices
