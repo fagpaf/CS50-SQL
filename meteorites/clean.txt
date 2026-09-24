@@ -1,0 +1,18 @@
+Para considerar os dados da tabela meteorites limpos, você deve garantir que:
+
+Valores ausentes: Quaisquer valores vazios em meteorites.csv sejam representados como NULL na tabela meteorites.
+
+Tenha em mente que as colunas mass, year, lat e long possuem valores vazios no CSV.
+
+Arredondamento: Todas as colunas com valores decimais (ex: 70.4777) devem ser arredondadas para a casa das centésimas mais próxima (ex: 70.4777 torna-se 70.48).
+
+Tenha em mente que as colunas mass, lat e long possuem valores decimais.
+
+Filtro de nametype: Todos os meteoritos com o nametype igual a "Relict" não sejam incluídos na tabela meteorites.
+
+Ordenação: Os meteoritos devem ser ordenados pelo year (do mais antigo para o mais novo) e depois — se dois meteoritos caíram no mesmo ano — pelo name em ordem alfabética.
+
+IDs atualizados: Você deve atualizar os IDs dos meteoritos do meteorites.csv de acordo com a ordem especificada no item #4.
+
+O id dos meteoritos deve começar em 1, iniciando pelo meteorito que caiu no ano mais antigo e que seja o primeiro em ordem alfabética para aquele ano.
+
