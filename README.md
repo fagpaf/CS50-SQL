@@ -18,7 +18,7 @@ Neste repositório estão os exercícios e anotações que estou desenvolvendo d
 * [x] Relacionamentos entre tabelas
 * [x] Normalização
 * [x] `INSERT`, `UPDATE` e `DELETE`
-* [ ] Views
+* [x] Views
 * [ ] Índices
 * [ ] Otimização de consultas
 * [ ] Modelagem de bancos de dados

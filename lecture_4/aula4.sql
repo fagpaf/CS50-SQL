@@ -196,3 +196,176 @@ UPDATE "2021" SET "title" = ' The Minor Detail'
 WHERE "title" = 'Minor Detail';
 -- Parse error near line 22: cannot modify 2021 because it is a view
 -- O que devemos fazer é atualizar a tabela adjecente, ou seja, a tabela "books" que é a tabela base da view "2021".
+
+----------------------------------------------------------------
+
+SELECT * FROM "rides";
+┌────┬──────────────────┬──────────────────┬────────┐
+│ id │      origin      │   destination    │ rider  │
+├────┼──────────────────┼──────────────────┼────────┤
+│ 1  │ Good Egg Galaxy  │ Honeyhive Galaxy │ Peach  │
+│ 2  │ Castle Courtyard │ Cascade Kingdom  │ Mario  │
+│ 3  │ Metro Kingdom    │ Mushroom Kingdom │ Luigi  │
+│ 4  │ Seaside Kingdom  │ Deep Woods       │ Bowser │
+└────┴──────────────────┴──────────────────┴────────┘
+
+SELECT id, origin, destination FROM rides;
+┌────┬──────────────────┬──────────────────┐
+│ id │      origin      │   destination    │
+├────┼──────────────────┼──────────────────┤
+│ 1  │ Good Egg Galaxy  │ Honeyhive Galaxy │
+│ 2  │ Castle Courtyard │ Cascade Kingdom  │
+│ 3  │ Metro Kingdom    │ Mushroom Kingdom │
+│ 4  │ Seaside Kingdom  │ Deep Woods       │
+└────┴──────────────────┴──────────────────┘
+
+SELECT id, origin, destination, 'Anonymous' AS "rider"
+FROM rides;
+┌────┬──────────────────┬──────────────────┬───────────┐
+│ id │      origin      │   destination    │   rider   │
+├────┼──────────────────┼──────────────────┼───────────┤
+│ 1  │ Good Egg Galaxy  │ Honeyhive Galaxy │ Anonymous │
+│ 2  │ Castle Courtyard │ Cascade Kingdom  │ Anonymous │
+│ 3  │ Metro Kingdom    │ Mushroom Kingdom │ Anonymous │
+│ 4  │ Seaside Kingdom  │ Deep Woods       │ Anonymous │
+└────┴──────────────────┴──────────────────┴───────────┘
+
+CREATE VIEW "analysis" AS
+SELECT "id", "origin", "destination", 'Anonymous' AS "rider"
+FROM "rides";
+
+SELECT * FROM "analysis";
+┌────┬──────────────────┬──────────────────┬───────────┐
+│ id │      origin      │   destination    │   rider   │
+├────┼──────────────────┼──────────────────┼───────────┤
+│ 1  │ Good Egg Galaxy  │ Honeyhive Galaxy │ Anonymous │
+│ 2  │ Castle Courtyard │ Cascade Kingdom  │ Anonymous │
+│ 3  │ Metro Kingdom    │ Mushroom Kingdom │ Anonymous │
+│ 4  │ Seaside Kingdom  │ Deep Woods       │ Anonymous │
+└────┴──────────────────┴──────────────────┴───────────┘
+--------------------------------------------------------
+
+SELECT * FROM "collections";
+┌────┬─────────────────────────┬──────────────────┬────────────┐
+│ id │          title          │ accession_number │  acquired  │
+├────┼─────────────────────────┼──────────────────┼────────────┤
+│ 1  │ Farmers working at dawn │ 11.6152          │ 1911-08-03 │
+│ 2  │ Imaginative landscape   │ 56.496           │ NULL       │
+│ 3  │ Profusion of flowers    │ 56.257           │ 1956-04-12 │
+│ 4  │ Spring outing           │ 14.76            │ 1914-01-08 │
+└────┴─────────────────────────┴──────────────────┴────────────┘
+
+ALTER TABLE "collections" ADD COLUMN "deleted" INTEGER DEFAULT 0;
+SELECT * FROM "collections";
+┌────┬─────────────────────────┬──────────────────┬────────────┬─────────┐
+│ id │          title          │ accession_number │  acquired  │ deleted │
+├────┼─────────────────────────┼──────────────────┼────────────┼─────────┤
+│ 1  │ Farmers working at dawn │ 11.6152          │ 1911-08-03 │ 0       │
+│ 2  │ Imaginative landscape   │ 56.496           │ NULL       │ 0       │
+│ 3  │ Profusion of flowers    │ 56.257           │ 1956-04-12 │ 0       │
+│ 4  │ Spring outing           │ 14.76            │ 1914-01-08 │ 0       │
+└────┴─────────────────────────┴──────────────────┴────────────┴─────────┘
+
+UPDATE "collections"SET "deleted" = 1
+WHERE "title" = 'Farmers working at dawn';
+SELECT * FROM "collections";
+┌────┬─────────────────────────┬──────────────────┬────────────┬─────────┐
+│ id │          title          │ accession_number │  acquired  │ deleted │
+├────┼─────────────────────────┼──────────────────┼────────────┼─────────┤
+│ 1  │ Farmers working at dawn │ 11.6152          │ 1911-08-03 │ 1       │
+│ 2  │ Imaginative landscape   │ 56.496           │ NULL       │ 0       │
+│ 3  │ Profusion of flowers    │ 56.257           │ 1956-04-12 │ 0       │
+│ 4  │ Spring outing           │ 14.76            │ 1914-01-08 │ 0       │
+└────┴─────────────────────────┴──────────────────┴────────────┴─────────┘
+
+SELECT * FROM "collections"
+WHERE "deleted" = 0;
+┌────┬───────────────────────┬──────────────────┬────────────┬─────────┐
+│ id │         title         │ accession_number │  acquired  │ deleted │
+├────┼───────────────────────┼──────────────────┼────────────┼─────────┤
+│ 2  │ Imaginative landscape │ 56.496           │ NULL       │ 0       │
+│ 3  │ Profusion of flowers  │ 56.257           │ 1956-04-12 │ 0       │
+│ 4  │ Spring outing         │ 14.76            │ 1914-01-08 │ 0       │
+└────┴───────────────────────┴──────────────────┴────────────┴─────────┘
+
+CREATE VIEW "current_collections" AS
+SELECT "id", "title", "accession_number", "acquired"
+FROM "collections"
+WHERE "deleted" = 0;
+
+SELECT * FROM "current_collections";
+┌────┬───────────────────────┬──────────────────┬────────────┐
+│ id │         title         │ accession_number │  acquired  │
+├────┼───────────────────────┼──────────────────┼────────────┤
+│ 2  │ Imaginative landscape │ 56.496           │ NULL       │
+│ 3  │ Profusion of flowers  │ 56.257           │ 1956-04-12 │
+│ 4  │ Spring outing         │ 14.76            │ 1914-01-08 │
+└────┴───────────────────────┴──────────────────┴────────────┘
+
+DELETE FROM "current_collections"
+WHERE "title" = 'Imaginative landscape';
+Parse error: cannot modify current_collections because it is a view
+
+-- TENHO Q VER A SINTAZXE E SENTIDO DESSA CONSULTA E DO TRIGGER NO GERAL
+CREATE TRIGGER "delete"
+INSTEAD OF DELETE ON "current_collections"
+FOR EACH ROW
+BEGIN
+    UPDATE "collections" SET "deleted" = 1
+    WHERE "id" = OLD."id";
+END;
+
+DELETE FROM "current_collections"
+WHERE "title" = 'Imaginative landscape';
+
+SELECT * FROM "current_collections";
+┌────┬──────────────────────┬──────────────────┬────────────┐
+│ id │        title         │ accession_number │  acquired  │
+├────┼──────────────────────┼──────────────────┼────────────┤
+│ 3  │ Profusion of flowers │ 56.257           │ 1956-04-12 │
+│ 4  │ Spring outing        │ 14.76            │ 1914-01-08 │
+└────┴──────────────────────┴──────────────────┴────────────┘
+
+SELECT * FROM "collections";
+┌────┬─────────────────────────┬──────────────────┬────────────┬─────────┐
+│ id │          title          │ accession_number │  acquired  │ deleted │
+├────┼─────────────────────────┼──────────────────┼────────────┼─────────┤
+│ 1  │ Farmers working at dawn │ 11.6152          │ 1911-08-03 │ 1       │
+│ 2  │ Imaginative landscape   │ 56.496           │ NULL       │ 1       │
+│ 3  │ Profusion of flowers    │ 56.257           │ 1956-04-12 │ 0       │
+│ 4  │ Spring outing           │ 14.76            │ 1914-01-08 │ 0       │
+└────┴─────────────────────────┴──────────────────┴────────────┴─────────┘
+--------------------------------------------------------------------------
+
+CREATE TRIGGER "insert_when_exists"
+INSTEAD OF INSERT ON "current_collections"
+FOR EACH ROW 
+WHEN NEW."accession_number" IN (
+    SELECT "accession_number"
+    FROM "collections"
+)
+BEGIN
+    UPDATE "collections" SET "deleted" = 0
+    WHERE "accession_number" = NEW."accession_number";
+END;
+
+SELECT * FROM "collections";
+┌────┬─────────────────────────┬──────────────────┬────────────┬─────────┐
+│ id │          title          │ accession_number │  acquired  │ deleted │
+├────┼─────────────────────────┼──────────────────┼────────────┼─────────┤
+│ 1  │ Farmers working at dawn │ 11.6152          │ 1911-08-03 │ 1       │
+│ 2  │ Imaginative landscape   │ 56.496           │ NULL       │ 1       │
+│ 3  │ Profusion of flowers    │ 56.257           │ 1956-04-12 │ 0       │
+│ 4  │ Spring outing           │ 14.76            │ 1914-01-08 │ 0       │
+└────┴─────────────────────────┴──────────────────┴────────────┴─────────┘
+
+INSERT INTO "current_collections" ("title", "accession_number", "acquired")
+VALUES ('Imaginative landscape', '56.496', NULL);
+┌────┬─────────────────────────┬──────────────────┬────────────┬─────────┐
+│ id │          title          │ accession_number │  acquired  │ deleted │
+├────┼─────────────────────────┼──────────────────┼────────────┼─────────┤
+│ 1  │ Farmers working at dawn │ 11.6152          │ 1911-08-03 │ 1       │
+│ 2  │ Imaginative landscape   │ 56.496           │ NULL       │ 0       │
+│ 3  │ Profusion of flowers    │ 56.257           │ 1956-04-12 │ 0       │
+│ 4  │ Spring outing           │ 14.76            │ 1914-01-08 │ 0       │
+└────┴─────────────────────────┴──────────────────┴────────────┴─────────┘
