@@ -23,3 +23,6 @@
 -- GROUP BY book_id
 -- HAVING avg_rating > 4.0
 -- ORDER BY avg_rating DESC;
+
+
+# A regra do SQL é simples: Tudo o que você pede para mostrar no SELECT que NÃO seja uma conta (como COUNT, SUM, AVG) precisa ir para o GROUP BY.
