@@ -64,5 +64,36 @@ QUERY PLAN
 Run Time: real 0.000 user 0.000000 sys 0.000077
 
 -- VACUUM
+-- Limpa a memória em disco dos arquivos "apagados" via DROP
 
--- PRECISA BAIXAR O .db
+-- CONCORRÊNCIA
+
+-- ACID:
+-- ATOMICIDADE
+-- CONSISTÊNCIA
+-- ISOLAMENTO
+-- DURABILIDADE
+
+BEGIN TRANSACTION;
+--...
+COMMIT;
+
+SELECT * FROM "accounts";
+┌────┬─────────┬─────────┐
+│ id │  name   │ balance │
+├────┼─────────┼─────────┤
+│ 1  │ Alice   │ 10      │
+│ 2  │ Bob     │ 20      │
+│ 3  │ Charlie │ 30      │
+└────┴─────────┴─────────┘
+
+
+BEGIN TRANSACTION;
+UPDATE "accounts" SET "balance" = "balance" + 10 
+WHERE "id" = 2;
+COMMIT;
+
+-- RAce conditions
+-- tabela mutante
+
+-- Locks

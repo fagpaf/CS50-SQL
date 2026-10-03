@@ -19,9 +19,9 @@ Neste repositório estão os exercícios e anotações que estou desenvolvendo d
 * [x] Normalização
 * [x] `INSERT`, `UPDATE` e `DELETE`
 * [x] Views
-* [ ] Índices
-* [ ] Otimização de consultas
-* [ ] Modelagem de bancos de dados
+* [x] Índices
+* [x] Otimização de consultas
+* [x] Modelagem de bancos de dados
 * [ ] SQLite
 * [ ] PostgreSQL
 * [ ] MySQL
