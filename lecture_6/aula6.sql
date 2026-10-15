@@ -60,3 +60,66 @@ MODIFY `line` ENUM('blue', 'red', 'green', 'orange', 'silver') NOT NULL;
 | name  | varchar(32)                                  | NO   | UNI | NULL    |                |
 | line  | enum('blue','red','green','orange','silver') | NO   |     | NULL    |                |
 +-------+----------------------------------------------+------+-----+---------+----------------+
+-- =================================================================================================
+
+-- STORED PROCEDURES
+ALTER TABLE `collections`
+ADD COLUMN `deleted` TINYINT DEFAULT 0;
+
+delimiter //
+
+CREATE PROCEDURE `current_collection`()
+BEGIN
+SELECT `title`, `accession_number`, `acquired`
+FROM `collections` WHERE `deleted` = 0;
+END//
+
+delimiter ;
+
+CALL `current_collection`();
++-------------------------+------------------+------------+
+| title                   | accession_number | acquired   |
++-------------------------+------------------+------------+
+| Farmers working at dawn | 11.6152          | 1911-08-03 |
+| Imaginative landscape   | 56.496           | NULL       |
+| Profusion of flowers    | 56.257           | 1956-04-12 |
+| Spring outing           | 14.76            | 1914-01-08 |
++-------------------------+------------------+------------+
+
+UPDATE `collections` SET `deleted` = 1
+WHERE `title` = 'Farmers working at dawn';
++-----------------------+------------------+------------+
+| title                 | accession_number | acquired   |
++-----------------------+------------------+------------+
+| Imaginative landscape | 56.496           | NULL       |
+| Profusion of flowers  | 56.257           | 1956-04-12 |
+| Spring outing         | 14.76            | 1914-01-08 |
++-----------------------+------------------+------------+
+
+CREATE TABLE `transactions`(
+    `id` INT AUTO_INCREMENT,
+    `title` VARCHAR (64) NOT NULL,
+    `action` ENUM('bougth', 'sold') NOT NULL,
+    PRIMARY KEY(`id`)
+);
+
+delimiter //
+
+CREATE PROCEDURE `sell`(IN `sold_id` INT)
+BEGIN 
+UPDATE `collections` SET `deleted` = 1
+WHERE `id` = `sold_id`;
+INSERT INTO `transactions` (`title`, `action`)
+VALUES(( SELECT `title` FROM `collections` WHERE `id` = `sold_id`), 'sold');
+END // 
+
+delimiter ;
+
+CALL `sell`(2);
+
+SELECT * FROM `transactions`;
++----+-----------------------+--------+
+| id | title                 | action |
++----+-----------------------+--------+
+|  1 | Imaginative landscape | sold   |
++----+-----------------------+--------+
