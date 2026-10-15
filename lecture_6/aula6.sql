@@ -123,3 +123,81 @@ SELECT * FROM `transactions`;
 +----+-----------------------+--------+
 |  1 | Imaginative landscape | sold   |
 +----+-----------------------+--------+
+
+
+CREATE USER 'carter' INDENTIED BY 'password';
+
+
+
+GRANT privilege, ... TO user;
+REVOKE privilege, ... FROM user;
+
+GRANT SELECT ON `rideshare`.`analysis` TO 'carter';
+REVOKE SELECT ON `rideshare`.`analysis` FROM 'carter';
+
+GRANT ALL ON *.* TO 'carter';
+REVOKE ALL ON *.* FROM 'carter';
+
+-- SQL Injection Attacks
+
+SELECT* FROM `accounts`;
++----+---------+---------+
+| id | name    | balance |
++----+---------+---------+
+|  1 | Alice   |      10 |
+|  2 | Bob     |      20 |
+|  3 | Charlie |      30 |
++----+---------+---------+
+
+SELECT* FROM `accounts`
+WHERE `id` = 1;
++----+-------+---------+
+| id | name  | balance |
++----+-------+---------+
+|  1 | Alice |      10 |
++----+-------+---------+
+
+SELECT* FROM `accounts`
+WHERE `id` = 1 UNION
+SELECT * FROM `accounts`;
++----+---------+---------+
+| id | name    | balance |
++----+---------+---------+
+|  1 | Alice   |      10 |
+|  2 | Bob     |      20 |
+|  3 | Charlie |      30 |
++----+---------+---------+
+
+-- Prepared Statements
+PREPARE `balance_check`
+FROM 'SELECT * FROM `accounts`
+WHERE `id` = ?';
+'
+
+SET @id = 1;
+
+EXECUTE `balance_check` USING @id;
++----+-------+---------+
+| id | name  | balance |
++----+-------+---------+
+|  1 | Alice |      10 |
++----+-------+---------+
+
+SET @id = '1 UNION SELECT * FROM `accounts`';
+'
+
+EXECUTE `balance_check` USING @id;
++----+-------+---------+
+| id | name  | balance |
++----+-------+---------+
+|  1 | Alice |      10 |
++----+-------+---------+
+
+SELECT @id;
++----------------------------------+
+| @id                              |
++----------------------------------+
+| 1 UNION SELECT * FROM `accounts` |
++----------------------------------+
+
+-- VER FORMAT STRING MALICIOSOS

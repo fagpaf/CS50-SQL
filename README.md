@@ -22,9 +22,9 @@ Neste repositório estão os exercícios e anotações que estou desenvolvendo d
 * [x] Índices
 * [x] Otimização de consultas
 * [x] Modelagem de bancos de dados
-* [ ] SQLite
-* [ ] PostgreSQL
-* [ ] MySQL
+* [x] SQLite
+* [x] PostgreSQL
+* [x] MySQL
 
 ## Curso
 
